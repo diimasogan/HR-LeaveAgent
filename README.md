@@ -4,8 +4,12 @@ Boomi Web Services processes exposed as tools for an AI **HR Leave Assistant**: 
 leave balances, leave policies, request status and leave submission, with requester authorization.
 All demo data is fictitious (`nusantaradigital.example`).
 
+🖥️ **Live portal mockup:** https://diimasogan.github.io/HR-LeaveAgent/portal/ — runs in the browser with the same mock data,
+authorisation and 9 policy rules as the Boomi processes (chat in English / Bahasa Indonesia, persona switcher, demo scenarios, audit log).
+
 | Path | What |
 |---|---|
 | `active-development/process/` | API + sub-processes, test harness |
 | `active-development/crossref/` | Mock HR data tables |
+| `portal/` | Static portal mockup (`index.html`, `style.css`, `app.js`) |
 | `agent/` | Agent instructions, OpenAPI tool spec, demo script, build script |
