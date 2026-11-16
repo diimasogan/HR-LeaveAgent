@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="22b42dc2-8e88-4c0a-84c8-87eec7510637" name="[SUB] HR Tool - Get Leave Policies" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_leave_policies. Query: requesterId. Returns the leave policy catalogue. Access: any active employee. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<passthroughaction/>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape2" shapetype="documentproperties" userlabel="Set Tool Context" x="240.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_TOOL_NAME" persist="false" propertyId="process.DPP_TOOL_NAME" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="get_leave_policies"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_REQUESTER_ID" persist="false" propertyId="process.DPP_REQUESTER_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requesterId" processpropertydefaultvalue=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_EMPLOYEE_ID" persist="false" propertyId="process.DPP_EMPLOYEE_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requesterId" processpropertydefaultvalue=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ALLOW_MANAGER" persist="false" propertyId="process.DPP_ALLOW_MANAGER" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="false"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape2.dragpoint1" toShape="shape3" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape3" shapetype="processcall" userlabel="Authorize Requester" x="432.0" y="48.0">
+  <configuration>
+<processcall abort="true" processId="dba3fb26-76b4-4f08-989d-ed77120e665f" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape40"/><returnpaths childShapeName="shape42"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape40" name="shape3.dragpoint1" text="Authorized" toShape="shape4" x="608" y="56"/><dragpoint identifier="shape42" name="shape3.dragpoint2" text="Denied" toShape="shape6" x="608" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape4" shapetype="message" userlabel="Build Tool Response" x="624.0" y="48.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": true, "company": "PT Nusantara Digital Solutions (fictitious)", "policyVersion": "HR-LV-2026.1", "dayUnit": "working days unless stated otherwise", "policies": [{"leaveType": "ANNUAL", "displayName": "'{1}'", "entitlementSummary": "'{2}'", "minNoticeDays": '{3}', "maxConsecutiveWorkingDays": '{4}', "maxBackdateDays": '{5}', "documentationRequired": "'{6}'", "documentationDetail": "'{7}'", "approvalRoute": "'{8}'", "paid": "'{9}'", "policyNotes": "'{10}'"}, {"leaveType": "SICK", "displayName": "'{11}'", "entitlementSummary": "'{12}'", "minNoticeDays": '{13}', "maxConsecutiveWorkingDays": '{14}', "maxBackdateDays": '{15}', "documentationRequired": "'{16}'", "documentationDetail": "'{17}'", "approvalRoute": "'{18}'", "paid": "'{19}'", "policyNotes": "'{20}'"}, {"leaveType": "SPECIAL", "displayName": "'{21}'", "entitlementSummary": "'{22}'", "minNoticeDays": '{23}', "maxConsecutiveWorkingDays": '{24}', "maxBackdateDays": '{25}', "documentationRequired": "'{26}'", "documentationDetail": "'{27}'", "approvalRoute": "'{28}'", "paid": "'{29}'", "policyNotes": "'{30}'"}, {"leaveType": "PARENTAL", "displayName": "'{31}'", "entitlementSummary": "'{32}'", "minNoticeDays": '{33}', "maxConsecutiveWorkingDays": '{34}', "maxBackdateDays": '{35}', "documentationRequired": "'{36}'", "documentationDetail": "'{37}'", "approvalRoute": "'{38}'", "paid": "'{39}'", "policyNotes": "'{40}'"}]}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="1" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="3" outputParamName="entitlement_summary"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="2" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="4" outputParamName="min_notice_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="3" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="5" outputParamName="max_consecutive_working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="4" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="6" outputParamName="max_backdate_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="5" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="7" outputParamName="documentation_required"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="6" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="8" outputParamName="documentation_detail"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="7" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="9" outputParamName="approval_route"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="8" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="10" outputParamName="paid"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="9" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="11" outputParamName="policy_notes"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="ANNUAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="10" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="11" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="3" outputParamName="entitlement_summary"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="12" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="4" outputParamName="min_notice_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="13" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="5" outputParamName="max_consecutive_working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="14" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="6" outputParamName="max_backdate_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="15" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="7" outputParamName="documentation_required"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="16" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="8" outputParamName="documentation_detail"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="17" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="9" outputParamName="approval_route"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="18" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="10" outputParamName="paid"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="19" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="11" outputParamName="policy_notes"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SICK"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="20" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="21" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="3" outputParamName="entitlement_summary"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="22" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="4" outputParamName="min_notice_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="23" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="5" outputParamName="max_consecutive_working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="24" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="6" outputParamName="max_backdate_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="25" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="7" outputParamName="documentation_required"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="26" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="8" outputParamName="documentation_detail"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="27" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="9" outputParamName="approval_route"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="28" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="10" outputParamName="paid"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="29" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="11" outputParamName="policy_notes"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SPECIAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="30" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="31" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="3" outputParamName="entitlement_summary"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="32" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="4" outputParamName="min_notice_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="33" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="5" outputParamName="max_consecutive_working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="34" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="6" outputParamName="max_backdate_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="35" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="7" outputParamName="documentation_required"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="36" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="8" outputParamName="documentation_detail"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="37" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="9" outputParamName="approval_route"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="38" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="10" outputParamName="paid"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="39" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="11" outputParamName="policy_notes"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="PARENTAL"/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape4.dragpoint1" toShape="shape5" x="800" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape5" shapetype="notify" userlabel="Audit: Allowed" x="816.0" y="48.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="RETURNED_DATA"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape5.dragpoint1" toShape="shape9" x="992" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape6" shapetype="notify" userlabel="Audit: Denied" x="624.0" y="208.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="ACCESS_DENIED"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape6.dragpoint1" toShape="shape9" x="800" y="216"/></dragpoints>
+</shape>
+<shape image="returndocuments_icon" name="shape9" shapetype="returndocuments" userlabel="Tool Response" x="1008.0" y="48.0">
+  <configuration>
+<returndocuments label="Tool Response"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

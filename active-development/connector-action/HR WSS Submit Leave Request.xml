@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="8a7f3708-58b9-431f-aa73-52cc2eb7adeb" name="HR WSS Submit Leave Request" type="connector-action" subType="wss" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool submit_leave_request. Endpoint: POST /ws/simple/createLeaveRequest (JSON body) | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <Operation>
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="singlejson" objectName="leaveRequest" operationType="CREATE" outputType="singledata" requestProfile="9581c087-06b2-437c-b153-f1e9aefc0b87" responseContentType="application/json"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+
+</bns:Component>

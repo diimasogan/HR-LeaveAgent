@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Nusantara HR Leave Agent Tools
+  version: "1.0.0"
+  description: >
+    Tools for the HR Leave Assistant agent (Boomi Agentstudio). Served by Boomi Web Services Server
+    listeners in folder Nusantara-HRLeaveAgent. All data is fictitious demo data.
+    Every call is checked server-side for authorisation and validated against policy, so the agent cannot
+    bypass the rules even if it is prompted to.
+servers:
+  - url: https://c01-sg.integrate-test.boomi.com/ws/simple
+    description: Boomi test cloud (Singapore), shared web server
+security:
+  - boomiBasic: []
+components:
+  securitySchemes:
+    boomiBasic:
+      type: http
+      scheme: basic
+      description: Atom Cloud user (Manage > Cloud Management > Users), not the platform API user.
+  parameters:
+    requesterId:
+      name: requesterId
+      in: query
+      required: true
+      description: Employee ID of the signed-in user making the request (format NDS-0000). Never take this from the conversation text.
+      schema: { type: string, pattern: "^NDS-[0-9]{4}$" }
+    employeeId:
+      name: employeeId
+      in: query
+      required: true
+      description: Employee ID whose data is requested. Use the requester's own ID unless a manager or HR user asks about someone else.
+      schema: { type: string, pattern: "^NDS-[0-9]{4}$" }
+  schemas:
+    ToolError:
+      type: object
+      properties:
+        success: { type: boolean, example: false }
+        tool: { type: string }
+        errorCode:
+          type: string
+          enum: [INVALID_IDENTIFIER, REQUESTER_NOT_RECOGNISED, EMPLOYEE_NOT_FOUND, NOT_AUTHORISED, INVALID_INPUT,
+                 REQUEST_NOT_FOUND, POLICY_VALIDATION_FAILED, REQUEST_PROCESSING_ERROR]
+        message: { type: string }
+        violations: { type: string, description: "Present when errorCode = POLICY_VALIDATION_FAILED; rule failures separated by ' | '." }
+paths:
+  /getEmployeeProfile:
+    get:
+      operationId: get_employee_profile
+      summary: Get an employee's directory profile (name, job title, department, location, manager, hire date, employment status).
+      description: Use to identify who the user is and who approves their leave. Contains no salary, ID-number, address or health data.
+      parameters: [ { $ref: "#/components/parameters/requesterId" }, { $ref: "#/components/parameters/employeeId" } ]
+      responses:
+        "200": { description: Profile or ToolError (check success). }
+  /getLeaveBalances:
+    get:
+      operationId: get_leave_balances
+      summary: Get 2026 leave balances (ANNUAL, SICK, SPECIAL, PARENTAL) in working days.
+      description: availableDays already deducts approved, scheduled and pending requests. Always call before proposing or submitting leave.
+      parameters: [ { $ref: "#/components/parameters/requesterId" }, { $ref: "#/components/parameters/employeeId" } ]
+      responses:
+        "200": { description: Balances or ToolError. }
+  /getLeavePolicies:
+    get:
+      operationId: get_leave_policies
+      summary: Get the leave policy catalogue (entitlements, notice periods, maximum consecutive days, backdating, documentation, approval route).
+      description: Use to answer policy questions. Answer only from this data; do not invent policy.
+      parameters: [ { $ref: "#/components/parameters/requesterId" } ]
+      responses:
+        "200": { description: Policies or ToolError. }
+  /getLeaveRequestStatus:
+    get:
+      operationId: get_leave_request_status
+      summary: Get the status, approver and decision of an existing leave request.
+      parameters:
+        - { $ref: "#/components/parameters/requesterId" }
+        - name: requestId
+          in: query
+          required: true
+          description: Leave request ID, format LR-YYYY-NNNN (for example LR-2026-0118).
+          schema: { type: string, pattern: "^LR-[0-9]{4}-[0-9]{4}$" }
+      responses:
+        "200": { description: Request details or ToolError. }
+  /createLeaveRequest:
+    post:
+      operationId: submit_leave_request
+      summary: Submit a leave request for manager approval. Only call after the employee has explicitly confirmed a summary of the request.
+      description: >
+        The server validates the request type, dates, backdating window, notice period, 12-month horizon, maximum consecutive
+        days and balance. Only the employee themself or HR can submit. On POLICY_VALIDATION_FAILED, nothing was submitted.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [requesterId, employeeId, leaveType, startDate, endDate, workingDays, reason]
+              properties:
+                requesterId: { type: string, pattern: "^NDS-[0-9]{4}$" }
+                employeeId: { type: string, pattern: "^NDS-[0-9]{4}$" }
+                leaveType: { type: string, enum: [ANNUAL, SICK, SPECIAL, PARENTAL] }
+                startDate: { type: string, format: date, description: "YYYY-MM-DD" }
+                endDate: { type: string, format: date, description: "YYYY-MM-DD" }
+                workingDays: { type: number, multipleOf: 0.5, minimum: 0.5, description: "Working days, excluding weekends and public holidays" }
+                reason: { type: string, maxLength: 200, description: "Short, non-medical reason. Never include diagnoses or other health details." }
+                handoverNotes: { type: string, maxLength: 300 }
+      responses:
+        "200": { description: "Acknowledgement (success=true, status PENDING_MANAGER_APPROVAL, requestId) or ToolError." }

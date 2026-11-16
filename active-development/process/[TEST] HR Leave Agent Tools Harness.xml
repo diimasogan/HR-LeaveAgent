@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="9186ea2d-a14a-40a9-aad7-7401f17a4cef" name="[TEST] HR Leave Agent Tools Harness" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Test harness: runs 16 scenarios (allowed, denied, invalid, policy-rejected, error) against every HR agent tool subprocess and logs each JSON response. Run manually; not part of the agent runtime. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<noaction/>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="branch_icon" name="shape2" shapetype="branch" userlabel="" x="240.0" y="48.0">
+  <configuration>
+<branch numBranches="16"/>
+  </configuration>
+  <dragpoints><dragpoint identifier="1" name="shape2.dragpoint1" text="1" toShape="shape100" x="416" y="56"/><dragpoint identifier="2" name="shape2.dragpoint2" text="2" toShape="shape110" x="416" y="56"/><dragpoint identifier="3" name="shape2.dragpoint3" text="3" toShape="shape120" x="416" y="56"/><dragpoint identifier="4" name="shape2.dragpoint4" text="4" toShape="shape130" x="416" y="56"/><dragpoint identifier="5" name="shape2.dragpoint5" text="5" toShape="shape140" x="416" y="56"/><dragpoint identifier="6" name="shape2.dragpoint6" text="6" toShape="shape150" x="416" y="56"/><dragpoint identifier="7" name="shape2.dragpoint7" text="7" toShape="shape160" x="416" y="56"/><dragpoint identifier="8" name="shape2.dragpoint8" text="8" toShape="shape170" x="416" y="56"/><dragpoint identifier="9" name="shape2.dragpoint9" text="9" toShape="shape180" x="416" y="56"/><dragpoint identifier="10" name="shape2.dragpoint10" text="10" toShape="shape190" x="416" y="56"/><dragpoint identifier="11" name="shape2.dragpoint11" text="11" toShape="shape200" x="416" y="56"/><dragpoint identifier="12" name="shape2.dragpoint12" text="12" toShape="shape210" x="416" y="56"/><dragpoint identifier="13" name="shape2.dragpoint13" text="13" toShape="shape220" x="416" y="56"/><dragpoint identifier="14" name="shape2.dragpoint14" text="14" toShape="shape230" x="416" y="56"/><dragpoint identifier="15" name="shape2.dragpoint15" text="15" toShape="shape240" x="416" y="56"/><dragpoint identifier="16" name="shape2.dragpoint16" text="16" toShape="shape250" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape100" shapetype="documentproperties" userlabel="Case 01 profile self" x="432.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape100.dragpoint1" toShape="shape101" x="608" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape101" shapetype="message" userlabel="Empty Document" x="624.0" y="48.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape101.dragpoint1" toShape="shape102" x="800" y="56"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape102" shapetype="processcall" userlabel="Tool: profile" x="816.0" y="48.0">
+  <configuration>
+<processcall abort="true" processId="f58f640e-45f7-4ff7-938f-2764d4aa56fe" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape102.dragpoint1" text="Tool Response" toShape="shape103" x="992" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape103" shapetype="notify" userlabel="Log Result" x="1008.0" y="48.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 01 profile self =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape103.dragpoint1" toShape="shape104" x="1184" y="56"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape104" shapetype="stop" userlabel="" x="1200.0" y="48.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape110" shapetype="documentproperties" userlabel="Case 02 profile manager" x="432.0" y="208.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1010"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape110.dragpoint1" toShape="shape111" x="608" y="216"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape111" shapetype="message" userlabel="Empty Document" x="624.0" y="208.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape111.dragpoint1" toShape="shape112" x="800" y="216"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape112" shapetype="processcall" userlabel="Tool: profile" x="816.0" y="208.0">
+  <configuration>
+<processcall abort="true" processId="f58f640e-45f7-4ff7-938f-2764d4aa56fe" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape112.dragpoint1" text="Tool Response" toShape="shape113" x="992" y="216"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape113" shapetype="notify" userlabel="Log Result" x="1008.0" y="208.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 02 profile manager =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape113.dragpoint1" toShape="shape114" x="1184" y="216"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape114" shapetype="stop" userlabel="" x="1200.0" y="208.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape120" shapetype="documentproperties" userlabel="Case 03 profile peer DENY" x="432.0" y="368.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1013"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape120.dragpoint1" toShape="shape121" x="608" y="376"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape121" shapetype="message" userlabel="Empty Document" x="624.0" y="368.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape121.dragpoint1" toShape="shape122" x="800" y="376"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape122" shapetype="processcall" userlabel="Tool: profile" x="816.0" y="368.0">
+  <configuration>
+<processcall abort="true" processId="f58f640e-45f7-4ff7-938f-2764d4aa56fe" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape122.dragpoint1" text="Tool Response" toShape="shape123" x="992" y="376"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape123" shapetype="notify" userlabel="Log Result" x="1008.0" y="368.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 03 profile peer DENY =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape123.dragpoint1" toShape="shape124" x="1184" y="376"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape124" shapetype="stop" userlabel="" x="1200.0" y="368.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape130" shapetype="documentproperties" userlabel="Case 04 balances HR admin" x="432.0" y="528.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1002"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1032"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape130.dragpoint1" toShape="shape131" x="608" y="536"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape131" shapetype="message" userlabel="Empty Document" x="624.0" y="528.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape131.dragpoint1" toShape="shape132" x="800" y="536"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape132" shapetype="processcall" userlabel="Tool: balances" x="816.0" y="528.0">
+  <configuration>
+<processcall abort="true" processId="9124b42a-916f-496d-93bf-675a7af825b6" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape132.dragpoint1" text="Tool Response" toShape="shape133" x="992" y="536"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape133" shapetype="notify" userlabel="Log Result" x="1008.0" y="528.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 04 balances HR admin =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape133.dragpoint1" toShape="shape134" x="1184" y="536"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape134" shapetype="stop" userlabel="" x="1200.0" y="528.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape140" shapetype="documentproperties" userlabel="Case 05 balances inactive requester DENY" x="432.0" y="688.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1033"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1033"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape140.dragpoint1" toShape="shape141" x="608" y="696"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape141" shapetype="message" userlabel="Empty Document" x="624.0" y="688.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape141.dragpoint1" toShape="shape142" x="800" y="696"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape142" shapetype="processcall" userlabel="Tool: balances" x="816.0" y="688.0">
+  <configuration>
+<processcall abort="true" processId="9124b42a-916f-496d-93bf-675a7af825b6" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape142.dragpoint1" text="Tool Response" toShape="shape143" x="992" y="696"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape143" shapetype="notify" userlabel="Log Result" x="1008.0" y="688.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 05 balances inactive requester DENY =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape143.dragpoint1" toShape="shape144" x="1184" y="696"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape144" shapetype="stop" userlabel="" x="1200.0" y="688.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape150" shapetype="documentproperties" userlabel="Case 06 policies" x="432.0" y="848.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1012"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape150.dragpoint1" toShape="shape151" x="608" y="856"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape151" shapetype="message" userlabel="Empty Document" x="624.0" y="848.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape151.dragpoint1" toShape="shape152" x="800" y="856"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape152" shapetype="processcall" userlabel="Tool: policies" x="816.0" y="848.0">
+  <configuration>
+<processcall abort="true" processId="22b42dc2-8e88-4c0a-84c8-87eec7510637" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape152.dragpoint1" text="Tool Response" toShape="shape153" x="992" y="856"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape153" shapetype="notify" userlabel="Log Result" x="1008.0" y="848.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 06 policies =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape153.dragpoint1" toShape="shape154" x="1184" y="856"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape154" shapetype="stop" userlabel="" x="1200.0" y="848.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape160" shapetype="documentproperties" userlabel="Case 07 status own" x="432.0" y="1008.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="LR-2026-0118"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape160.dragpoint1" toShape="shape161" x="608" y="1016"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape161" shapetype="message" userlabel="Empty Document" x="624.0" y="1008.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape161.dragpoint1" toShape="shape162" x="800" y="1016"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape162" shapetype="processcall" userlabel="Tool: status" x="816.0" y="1008.0">
+  <configuration>
+<processcall abort="true" processId="3adb3367-61f8-424f-90a7-faad60071919" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape162.dragpoint1" text="Tool Response" toShape="shape163" x="992" y="1016"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape163" shapetype="notify" userlabel="Log Result" x="1008.0" y="1008.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 07 status own =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape163.dragpoint1" toShape="shape164" x="1184" y="1016"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape164" shapetype="stop" userlabel="" x="1200.0" y="1008.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape170" shapetype="documentproperties" userlabel="Case 08 status not found" x="432.0" y="1168.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="LR-2026-9999"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape170.dragpoint1" toShape="shape171" x="608" y="1176"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape171" shapetype="message" userlabel="Empty Document" x="624.0" y="1168.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape171.dragpoint1" toShape="shape172" x="800" y="1176"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape172" shapetype="processcall" userlabel="Tool: status" x="816.0" y="1168.0">
+  <configuration>
+<processcall abort="true" processId="3adb3367-61f8-424f-90a7-faad60071919" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape172.dragpoint1" text="Tool Response" toShape="shape173" x="992" y="1176"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape173" shapetype="notify" userlabel="Log Result" x="1008.0" y="1168.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 08 status not found =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape173.dragpoint1" toShape="shape174" x="1184" y="1176"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape174" shapetype="stop" userlabel="" x="1200.0" y="1168.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape180" shapetype="documentproperties" userlabel="Case 09 status injection INVALID" x="432.0" y="1328.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NDS-1011"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="LR-2026-0118' OR 1=1"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape180.dragpoint1" toShape="shape181" x="608" y="1336"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape181" shapetype="message" userlabel="Empty Document" x="624.0" y="1328.0">
+  <configuration>
+<message combined="false">
+  <msgTxt></msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape181.dragpoint1" toShape="shape182" x="800" y="1336"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape182" shapetype="processcall" userlabel="Tool: status" x="816.0" y="1328.0">
+  <configuration>
+<processcall abort="true" processId="3adb3367-61f8-424f-90a7-faad60071919" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape9"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape9" name="shape182.dragpoint1" text="Tool Response" toShape="shape183" x="992" y="1336"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape183" shapetype="notify" userlabel="Log Result" x="1008.0" y="1328.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 09 status injection INVALID =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape183.dragpoint1" toShape="shape184" x="1184" y="1336"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape184" shapetype="stop" userlabel="" x="1200.0" y="1328.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape190" shapetype="documentproperties" userlabel="Case 10 submit valid annual" x="432.0" y="1488.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape190.dragpoint1" toShape="shape191" x="608" y="1496"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape191" shapetype="message" userlabel="Test Request Body" x="624.0" y="1488.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1013", "employeeId": "NDS-1013", "leaveType": "ANNUAL", "startDate": "2026-12-07", "endDate": "2026-12-11", "workingDays": 5, "reason": "Family holiday in Bali", "handoverNotes": "Dewi covers on-call"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape191.dragpoint1" toShape="shape192" x="800" y="1496"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape192" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="1488.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape192.dragpoint1" text="Tool Response" toShape="shape193" x="992" y="1496"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape193" shapetype="notify" userlabel="Log Result" x="1008.0" y="1488.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 10 submit valid annual =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape193.dragpoint1" toShape="shape194" x="1184" y="1496"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape194" shapetype="stop" userlabel="" x="1200.0" y="1488.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape200" shapetype="documentproperties" userlabel="Case 11 submit notice+balance REJECT" x="432.0" y="1648.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape200.dragpoint1" toShape="shape201" x="608" y="1656"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape201" shapetype="message" userlabel="Test Request Body" x="624.0" y="1648.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1011", "employeeId": "NDS-1011", "leaveType": "ANNUAL", "startDate": "2026-11-16", "endDate": "2026-11-20", "workingDays": 5, "reason": "Short trip"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape201.dragpoint1" toShape="shape202" x="800" y="1656"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape202" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="1648.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape202.dragpoint1" text="Tool Response" toShape="shape203" x="992" y="1656"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape203" shapetype="notify" userlabel="Log Result" x="1008.0" y="1648.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 11 submit notice+balance REJECT =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape203.dragpoint1" toShape="shape204" x="1184" y="1656"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape204" shapetype="stop" userlabel="" x="1200.0" y="1648.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape210" shapetype="documentproperties" userlabel="Case 12 submit manager on behalf DENY" x="432.0" y="1808.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape210.dragpoint1" toShape="shape211" x="608" y="1816"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape211" shapetype="message" userlabel="Test Request Body" x="624.0" y="1808.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1010", "employeeId": "NDS-1011", "leaveType": "ANNUAL", "startDate": "2026-12-07", "endDate": "2026-12-08", "workingDays": 2, "reason": "Team offsite swap"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape211.dragpoint1" toShape="shape212" x="800" y="1816"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape212" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="1808.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape212.dragpoint1" text="Tool Response" toShape="shape213" x="992" y="1816"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape213" shapetype="notify" userlabel="Log Result" x="1008.0" y="1808.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 12 submit manager on behalf DENY =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape213.dragpoint1" toShape="shape214" x="1184" y="1816"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape214" shapetype="stop" userlabel="" x="1200.0" y="1808.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape220" shapetype="documentproperties" userlabel="Case 13 submit bad date format INVALID" x="432.0" y="1968.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape220.dragpoint1" toShape="shape221" x="608" y="1976"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape221" shapetype="message" userlabel="Test Request Body" x="624.0" y="1968.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1011", "employeeId": "NDS-1011", "leaveType": "ANNUAL", "startDate": "12/07/2026", "endDate": "12/08/2026", "workingDays": 2, "reason": "Holiday"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape221.dragpoint1" toShape="shape222" x="800" y="1976"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape222" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="1968.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape222.dragpoint1" text="Tool Response" toShape="shape223" x="992" y="1976"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape223" shapetype="notify" userlabel="Log Result" x="1008.0" y="1968.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 13 submit bad date format INVALID =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape223.dragpoint1" toShape="shape224" x="1184" y="1976"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape224" shapetype="stop" userlabel="" x="1200.0" y="1968.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape230" shapetype="documentproperties" userlabel="Case 14 submit new hire zero balance REJECT" x="432.0" y="2128.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape230.dragpoint1" toShape="shape231" x="608" y="2136"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape231" shapetype="message" userlabel="Test Request Body" x="624.0" y="2128.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1012", "employeeId": "NDS-1012", "leaveType": "ANNUAL", "startDate": "2026-12-14", "endDate": "2026-12-15", "workingDays": 2, "reason": "Visit family in Malang"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape231.dragpoint1" toShape="shape232" x="800" y="2136"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape232" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="2128.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape232.dragpoint1" text="Tool Response" toShape="shape233" x="992" y="2136"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape233" shapetype="notify" userlabel="Log Result" x="1008.0" y="2128.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 14 submit new hire zero balance REJECT =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape233.dragpoint1" toShape="shape234" x="1184" y="2136"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape234" shapetype="stop" userlabel="" x="1200.0" y="2128.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape240" shapetype="documentproperties" userlabel="Case 15 submit sick backdated OK" x="432.0" y="2288.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape240.dragpoint1" toShape="shape241" x="608" y="2296"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape241" shapetype="message" userlabel="Test Request Body" x="624.0" y="2288.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1031", "employeeId": "NDS-1031", "leaveType": "SICK", "startDate": "2026-11-10", "endDate": "2026-11-11", "workingDays": 2, "reason": "Flu"}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape241.dragpoint1" toShape="shape242" x="800" y="2296"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape242" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="2288.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape242.dragpoint1" text="Tool Response" toShape="shape243" x="992" y="2296"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape243" shapetype="notify" userlabel="Log Result" x="1008.0" y="2288.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 15 submit sick backdated OK =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape243.dragpoint1" toShape="shape244" x="1184" y="2296"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape244" shapetype="stop" userlabel="" x="1200.0" y="2288.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="documentproperties_icon" name="shape250" shapetype="documentproperties" userlabel="Case 16 submit malformed JSON ERROR" x="432.0" y="2448.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requesterId" persist="false" propertyId="process.query_requesterId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_employeeId" persist="false" propertyId="process.query_employeeId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - query_requestId" persist="false" propertyId="process.query_requestId" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape250.dragpoint1" toShape="shape251" x="608" y="2456"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape251" shapetype="message" userlabel="Test Request Body" x="624.0" y="2448.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "NDS-1011", broken'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape251.dragpoint1" toShape="shape252" x="800" y="2456"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape252" shapetype="processcall" userlabel="Tool: submit" x="816.0" y="2448.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape252.dragpoint1" text="Tool Response" toShape="shape253" x="992" y="2456"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape253" shapetype="notify" userlabel="Log Result" x="1008.0" y="2448.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>TEST 16 submit malformed JSON ERROR =&gt; {1}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="current"/>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape253.dragpoint1" toShape="shape254" x="1184" y="2456"/></dragpoints>
+</shape>
+<shape image="stop_icon" name="shape254" shapetype="stop" userlabel="" x="1200.0" y="2448.0">
+  <configuration>
+<stop continue="true"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

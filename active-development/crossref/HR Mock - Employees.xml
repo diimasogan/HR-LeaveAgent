@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" name="HR Mock - Employees"
+               type="crossref" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Employee directory: identity, reporting line, employment status and agent access role (EMPLOYEE / MANAGER / HR_ADMIN). Deliberately holds no salary, national ID, address or health data. | MOCK DATA for demo - fictitious company and people | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <CrossRefTable xmlns="" atomEnabled="false" modelVersion="3">
+      <ColumnHeaders>
+        <columnHeader>employee_id</columnHeader>
+        <columnHeader>full_name</columnHeader>
+        <columnHeader>preferred_name</columnHeader>
+        <columnHeader>work_email</columnHeader>
+        <columnHeader>job_title</columnHeader>
+        <columnHeader>department</columnHeader>
+        <columnHeader>work_location</columnHeader>
+        <columnHeader>manager_id</columnHeader>
+        <columnHeader>manager_name</columnHeader>
+        <columnHeader>hire_date</columnHeader>
+        <columnHeader>employment_type</columnHeader>
+        <columnHeader>employment_status</columnHeader>
+        <columnHeader>access_role</columnHeader>
+      </ColumnHeaders>
+      <Rows>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1000"/>
+            <ref colIdx="1" value="Budi Santoso"/>
+            <ref colIdx="2" value="Budi"/>
+            <ref colIdx="3" value="budi.santoso@nusantaradigital.example"/>
+            <ref colIdx="4" value="Chief Executive Officer"/>
+            <ref colIdx="5" value="Executive Office"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value=""/>
+            <ref colIdx="8" value=""/>
+            <ref colIdx="9" value="2015-03-02"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="MANAGER"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1001"/>
+            <ref colIdx="1" value="Ratna Wijaya"/>
+            <ref colIdx="2" value="Ratna"/>
+            <ref colIdx="3" value="ratna.wijaya@nusantaradigital.example"/>
+            <ref colIdx="4" value="Head of People and Culture"/>
+            <ref colIdx="5" value="People and Culture"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1000"/>
+            <ref colIdx="8" value="Budi Santoso"/>
+            <ref colIdx="9" value="2017-06-12"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="HR_ADMIN"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1002"/>
+            <ref colIdx="1" value="Siti Rahmawati"/>
+            <ref colIdx="2" value="Siti"/>
+            <ref colIdx="3" value="siti.rahmawati@nusantaradigital.example"/>
+            <ref colIdx="4" value="HR Business Partner"/>
+            <ref colIdx="5" value="People and Culture"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1001"/>
+            <ref colIdx="8" value="Ratna Wijaya"/>
+            <ref colIdx="9" value="2020-01-06"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="HR_ADMIN"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1010"/>
+            <ref colIdx="1" value="Hendra Gunawan"/>
+            <ref colIdx="2" value="Hendra"/>
+            <ref colIdx="3" value="hendra.gunawan@nusantaradigital.example"/>
+            <ref colIdx="4" value="VP Engineering"/>
+            <ref colIdx="5" value="Engineering"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1000"/>
+            <ref colIdx="8" value="Budi Santoso"/>
+            <ref colIdx="9" value="2016-09-19"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="MANAGER"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1011"/>
+            <ref colIdx="1" value="Dewi Lestari"/>
+            <ref colIdx="2" value="Dewi"/>
+            <ref colIdx="3" value="dewi.lestari@nusantaradigital.example"/>
+            <ref colIdx="4" value="Senior Software Engineer"/>
+            <ref colIdx="5" value="Engineering"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1010"/>
+            <ref colIdx="8" value="Hendra Gunawan"/>
+            <ref colIdx="9" value="2019-04-01"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1012"/>
+            <ref colIdx="1" value="Rizky Firmansyah"/>
+            <ref colIdx="2" value="Rizky"/>
+            <ref colIdx="3" value="rizky.firmansyah@nusantaradigital.example"/>
+            <ref colIdx="4" value="Software Engineer"/>
+            <ref colIdx="5" value="Engineering"/>
+            <ref colIdx="6" value="Surabaya"/>
+            <ref colIdx="7" value="NDS-1010"/>
+            <ref colIdx="8" value="Hendra Gunawan"/>
+            <ref colIdx="9" value="2026-03-02"/>
+            <ref colIdx="10" value="CONTRACT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1013"/>
+            <ref colIdx="1" value="Kevin Tan"/>
+            <ref colIdx="2" value="Kevin"/>
+            <ref colIdx="3" value="kevin.tan@nusantaradigital.example"/>
+            <ref colIdx="4" value="DevOps Engineer"/>
+            <ref colIdx="5" value="Engineering"/>
+            <ref colIdx="6" value="Singapore"/>
+            <ref colIdx="7" value="NDS-1010"/>
+            <ref colIdx="8" value="Hendra Gunawan"/>
+            <ref colIdx="9" value="2021-11-08"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1020"/>
+            <ref colIdx="1" value="Maya Putri"/>
+            <ref colIdx="2" value="Maya"/>
+            <ref colIdx="3" value="maya.putri@nusantaradigital.example"/>
+            <ref colIdx="4" value="Finance Manager"/>
+            <ref colIdx="5" value="Finance"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1000"/>
+            <ref colIdx="8" value="Budi Santoso"/>
+            <ref colIdx="9" value="2018-02-05"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="MANAGER"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1021"/>
+            <ref colIdx="1" value="Agus Setiawan"/>
+            <ref colIdx="2" value="Agus"/>
+            <ref colIdx="3" value="agus.setiawan@nusantaradigital.example"/>
+            <ref colIdx="4" value="Accountant"/>
+            <ref colIdx="5" value="Finance"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1020"/>
+            <ref colIdx="8" value="Maya Putri"/>
+            <ref colIdx="9" value="2022-08-22"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1030"/>
+            <ref colIdx="1" value="Lina Kurniawan"/>
+            <ref colIdx="2" value="Lina"/>
+            <ref colIdx="3" value="lina.kurniawan@nusantaradigital.example"/>
+            <ref colIdx="4" value="Sales Director"/>
+            <ref colIdx="5" value="Sales"/>
+            <ref colIdx="6" value="Surabaya"/>
+            <ref colIdx="7" value="NDS-1000"/>
+            <ref colIdx="8" value="Budi Santoso"/>
+            <ref colIdx="9" value="2017-10-30"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="MANAGER"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1031"/>
+            <ref colIdx="1" value="Fajar Nugroho"/>
+            <ref colIdx="2" value="Fajar"/>
+            <ref colIdx="3" value="fajar.nugroho@nusantaradigital.example"/>
+            <ref colIdx="4" value="Account Executive"/>
+            <ref colIdx="5" value="Sales"/>
+            <ref colIdx="6" value="Surabaya"/>
+            <ref colIdx="7" value="NDS-1030"/>
+            <ref colIdx="8" value="Lina Kurniawan"/>
+            <ref colIdx="9" value="2023-03-13"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1032"/>
+            <ref colIdx="1" value="Putri Anggraini"/>
+            <ref colIdx="2" value="Putri"/>
+            <ref colIdx="3" value="putri.anggraini@nusantaradigital.example"/>
+            <ref colIdx="4" value="Sales Coordinator"/>
+            <ref colIdx="5" value="Sales"/>
+            <ref colIdx="6" value="Jakarta"/>
+            <ref colIdx="7" value="NDS-1030"/>
+            <ref colIdx="8" value="Lina Kurniawan"/>
+            <ref colIdx="9" value="2021-05-17"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="ACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1033"/>
+            <ref colIdx="1" value="Yoga Prasetyo"/>
+            <ref colIdx="2" value="Yoga"/>
+            <ref colIdx="3" value="yoga.prasetyo@nusantaradigital.example"/>
+            <ref colIdx="4" value="Account Executive"/>
+            <ref colIdx="5" value="Sales"/>
+            <ref colIdx="6" value="Surabaya"/>
+            <ref colIdx="7" value="NDS-1030"/>
+            <ref colIdx="8" value="Lina Kurniawan"/>
+            <ref colIdx="9" value="2022-01-10"/>
+            <ref colIdx="10" value="PERMANENT"/>
+            <ref colIdx="11" value="INACTIVE"/>
+            <ref colIdx="12" value="EMPLOYEE"/>
+          </Values>
+        </row>
+      </Rows>
+    </CrossRefTable>
+  </bns:object>
+</bns:Component>

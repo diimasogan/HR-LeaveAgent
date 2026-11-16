@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="d9a8af3f-e106-4965-9462-e667df3d4337" name="HR Mock - Leave Balances"
+               type="crossref" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Leave balances per employee and leave type for leave year 2026. Lookup key = employee_id + leave_type. available_days = entitlement + carried_over - taken_or_scheduled - pending. | MOCK DATA for demo - fictitious company and people | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <CrossRefTable xmlns="" atomEnabled="false" modelVersion="3">
+      <ColumnHeaders>
+        <columnHeader>employee_id</columnHeader>
+        <columnHeader>leave_type</columnHeader>
+        <columnHeader>leave_year</columnHeader>
+        <columnHeader>entitlement_days</columnHeader>
+        <columnHeader>carried_over_days</columnHeader>
+        <columnHeader>taken_or_scheduled_days</columnHeader>
+        <columnHeader>pending_days</columnHeader>
+        <columnHeader>available_days</columnHeader>
+        <columnHeader>as_of_date</columnHeader>
+      </ColumnHeaders>
+      <Rows>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1000"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="16"/>
+            <ref colIdx="4" value="5"/>
+            <ref colIdx="5" value="9"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="12"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1000"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="1"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="13"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1000"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1000"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1001"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="16"/>
+            <ref colIdx="4" value="3"/>
+            <ref colIdx="5" value="11"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="8"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1001"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="14"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1001"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="2"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="3"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1001"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1002"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="2"/>
+            <ref colIdx="5" value="7"/>
+            <ref colIdx="6" value="4"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1002"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="2"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="12"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1002"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1002"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1010"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="16"/>
+            <ref colIdx="4" value="5"/>
+            <ref colIdx="5" value="12"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="9"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1010"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="3"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="11"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1010"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="2"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="3"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1010"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1011"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="8"/>
+            <ref colIdx="6" value="4"/>
+            <ref colIdx="7" value="2"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1011"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="4"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="10"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1011"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1011"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1012"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="0"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="0"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1012"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="1"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="13"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1012"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1012"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1013"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="1"/>
+            <ref colIdx="5" value="6"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="9"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1013"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="5"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="9"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1013"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1013"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1020"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="16"/>
+            <ref colIdx="4" value="2"/>
+            <ref colIdx="5" value="10"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="8"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1020"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="14"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1020"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1020"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1021"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="12"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="5"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="7"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1021"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="2"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="12"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1021"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="3"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="2"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1021"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1030"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="16"/>
+            <ref colIdx="4" value="5"/>
+            <ref colIdx="5" value="14"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="7"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1030"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="1"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="13"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1030"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1030"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1031"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="12"/>
+            <ref colIdx="4" value="3"/>
+            <ref colIdx="5" value="4"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="11"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1031"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="3"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="11"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1031"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1031"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1032"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="9"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1032"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="6"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="8"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1032"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1032"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="65"/>
+            <ref colIdx="7" value="0"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1033"/>
+            <ref colIdx="1" value="ANNUAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="12"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="12"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="0"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1033"/>
+            <ref colIdx="1" value="SICK"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="14"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="2"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="12"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1033"/>
+            <ref colIdx="1" value="SPECIAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="5"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="5"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="NDS-1033"/>
+            <ref colIdx="1" value="PARENTAL"/>
+            <ref colIdx="2" value="2026"/>
+            <ref colIdx="3" value="65"/>
+            <ref colIdx="4" value="0"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="0"/>
+            <ref colIdx="7" value="65"/>
+            <ref colIdx="8" value="2026-11-12"/>
+          </Values>
+        </row>
+      </Rows>
+    </CrossRefTable>
+  </bns:object>
+</bns:Component>

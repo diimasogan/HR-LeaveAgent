@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="3adb3367-61f8-424f-90a7-faad60071919" name="[SUB] HR Tool - Get Leave Request Status" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_leave_request_status. Query: requesterId, requestId. Returns status, approver and decision details. Access: the requesting employee, their direct manager, HR admin. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<passthroughaction/>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape2" shapetype="decision" userlabel="Request ID well-formed?" x="240.0" y="48.0">
+  <configuration>
+<decision comparison="regex" name="Request ID well-formed?">
+  <decisionvalue valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="^LR-[0-9]{4}-[0-9]{4}$"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape2.dragpoint1" text="True" toShape="shape3" x="416" y="56"/><dragpoint identifier="false" name="shape2.dragpoint2" text="False" toShape="shape20" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape3" shapetype="documentproperties" userlabel="Set Tool Context" x="432.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_TOOL_NAME" persist="false" propertyId="process.DPP_TOOL_NAME" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="get_leave_request_status"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_REQUESTER_ID" persist="false" propertyId="process.DPP_REQUESTER_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requesterId" processpropertydefaultvalue=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_EMPLOYEE_ID" persist="false" propertyId="process.DPP_EMPLOYEE_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="2" outputParamName="employee_id"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ALLOW_MANAGER" persist="false" propertyId="process.DPP_ALLOW_MANAGER" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="true"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape3.dragpoint1" toShape="shape4" x="608" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape4" shapetype="decision" userlabel="Request not found?" x="624.0" y="48.0">
+  <configuration>
+<decision comparison="equals" name="Request not found?">
+  <decisionvalue valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty=""/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape4.dragpoint1" text="True" toShape="shape21" x="800" y="56"/><dragpoint identifier="false" name="shape4.dragpoint2" text="False" toShape="shape5" x="800" y="56"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape5" shapetype="processcall" userlabel="Authorize Requester" x="816.0" y="48.0">
+  <configuration>
+<processcall abort="true" processId="dba3fb26-76b4-4f08-989d-ed77120e665f" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape40"/><returnpaths childShapeName="shape42"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape40" name="shape5.dragpoint1" text="Authorized" toShape="shape6" x="992" y="56"/><dragpoint identifier="shape42" name="shape5.dragpoint2" text="Denied" toShape="shape8" x="992" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape6" shapetype="message" userlabel="Build Tool Response" x="1008.0" y="48.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": true, "request": {"requestId": "'{1}'", "employeeId": "'{2}'", "employeeName": "'{3}'", "leaveType": "'{4}'", "startDate": "'{5}'", "endDate": "'{6}'", "workingDays": '{7}', "status": "'{8}'", "submittedOn": "'{9}'", "approverId": "'{10}'", "approverName": "'{11}'", "decisionOn": "'{12}'", "approverComment": "'{13}'"}}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="1" outputParamName="request_id"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="1" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="2" outputParamName="employee_id"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="2" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="3" outputParamName="employee_name"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="3" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="4" outputParamName="leave_type"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="4" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="5" outputParamName="start_date"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="5" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="6" outputParamName="end_date"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="6" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="7" outputParamName="working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="7" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="8" outputParamName="status"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="8" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="9" outputParamName="submitted_on"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="9" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="10" outputParamName="approver_id"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="10" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="11" outputParamName="approver_name"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="11" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="12" outputParamName="decision_on"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="12" valueType="crossref"><crossrefparameter crossRefTableId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" outputParamId="13" outputParamName="approver_comment"><inputs><parametervalue elementToSetId="1" elementToSetName="request_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="query_requestId" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape6.dragpoint1" toShape="shape7" x="1184" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape7" shapetype="notify" userlabel="Audit: Allowed" x="1200.0" y="48.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="RETURNED_DATA"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape7.dragpoint1" toShape="shape9" x="1376" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape8" shapetype="notify" userlabel="Audit: Denied" x="1008.0" y="208.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="ACCESS_DENIED"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape8.dragpoint1" toShape="shape9" x="1184" y="216"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape20" shapetype="message" userlabel="Build Invalid Request ID Response" x="432.0" y="368.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "get_leave_request_status", "errorCode": "INVALID_INPUT", "message": "requestId must use the format LR-YYYY-NNNN, for example LR-2026-0118."}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape20.dragpoint1" toShape="shape9" x="608" y="376"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape21" shapetype="message" userlabel="Build Not Found Response" x="816.0" y="368.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "get_leave_request_status", "errorCode": "REQUEST_NOT_FOUND", "message": "No leave request exists with that ID. Requests submitted during this demo (IDs LR-YYYY-9NNN) are acknowledged but not stored, so their status cannot be looked up yet."}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape21.dragpoint1" toShape="shape9" x="992" y="376"/></dragpoints>
+</shape>
+<shape image="returndocuments_icon" name="shape9" shapetype="returndocuments" userlabel="Tool Response" x="1392.0" y="48.0">
+  <configuration>
+<returndocuments label="Tool Response"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

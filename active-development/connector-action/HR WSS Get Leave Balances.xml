@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="fc64030d-471e-4df7-9f76-a24247b2646e" name="HR WSS Get Leave Balances" type="connector-action" subType="wss" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_leave_balances. Endpoint: GET /ws/simple/getLeaveBalances?requesterId=&amp;employeeId= | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <Operation>
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="none" objectName="leaveBalances" operationType="GET" outputType="singledata" responseContentType="application/json"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+
+</bns:Component>

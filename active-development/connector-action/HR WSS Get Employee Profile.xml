@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="01466c90-d64f-42a8-9b40-b81ae91a7017" name="HR WSS Get Employee Profile" type="connector-action" subType="wss" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_employee_profile. Endpoint: GET /ws/simple/getEmployeeProfile?requesterId=&amp;employeeId= | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <Operation>
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="none" objectName="employeeProfile" operationType="GET" outputType="singledata" responseContentType="application/json"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+
+</bns:Component>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="9581c087-06b2-437c-b153-f1e9aefc0b87" name="j.HR.SubmitLeaveRequest.REQ" type="profile.json" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Request body for the submit_leave_request agent tool (POST /ws/simple/createLeaveRequest). | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <JSONProfile strict="false">
+      <DataElements>
+        <JSONRootValue dataType="character" isMappable="true" isNode="true" key="1" name="Root">
+          <DataFormat><ProfileCharacterFormat/></DataFormat>
+          <JSONObject isMappable="false" isNode="true" key="2" name="Object">
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="3" name="requesterId">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="4" name="employeeId">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="5" name="leaveType">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="6" name="startDate">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="7" name="endDate">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="number" isMappable="true" isNode="true" key="8" name="workingDays">
+              <DataFormat><ProfileNumberFormat numberFormat=""/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="9" name="reason">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+            <JSONObjectEntry dataType="character" isMappable="true" isNode="true" key="10" name="handoverNotes">
+              <DataFormat><ProfileCharacterFormat/></DataFormat>
+            </JSONObjectEntry>
+          </JSONObject>
+          <Qualifiers><QualifierList/></Qualifiers>
+        </JSONRootValue>
+      </DataElements>
+      <tagLists/>
+    </JSONProfile>
+  </bns:object>
+
+</bns:Component>

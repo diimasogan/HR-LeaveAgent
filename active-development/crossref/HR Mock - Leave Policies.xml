@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" name="HR Mock - Leave Policies"
+               type="crossref" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Leave policy catalogue used by the agent tools and by submission validation. Numeric columns drive the Business Rules checks in [SUB] HR Tool - Submit Leave Request. | MOCK DATA for demo - fictitious company and people | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <CrossRefTable xmlns="" atomEnabled="false" modelVersion="3">
+      <ColumnHeaders>
+        <columnHeader>leave_type</columnHeader>
+        <columnHeader>display_name</columnHeader>
+        <columnHeader>entitlement_summary</columnHeader>
+        <columnHeader>min_notice_days</columnHeader>
+        <columnHeader>max_consecutive_working_days</columnHeader>
+        <columnHeader>max_backdate_days</columnHeader>
+        <columnHeader>documentation_required</columnHeader>
+        <columnHeader>documentation_detail</columnHeader>
+        <columnHeader>approval_route</columnHeader>
+        <columnHeader>paid</columnHeader>
+        <columnHeader>policy_notes</columnHeader>
+      </ColumnHeaders>
+      <Rows>
+        <row>
+          <Values>
+            <ref colIdx="0" value="ANNUAL"/>
+            <ref colIdx="1" value="Annual Leave (Cuti Tahunan)"/>
+            <ref colIdx="2" value="12 working days per year; +2 days at 5 years of service, +4 days at 8 years"/>
+            <ref colIdx="3" value="7"/>
+            <ref colIdx="4" value="10"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="NO"/>
+            <ref colIdx="7" value="None"/>
+            <ref colIdx="8" value="MANAGER"/>
+            <ref colIdx="9" value="YES"/>
+            <ref colIdx="10" value="Available after 12 months of continuous service. Up to 5 unused days carry over into the next year and must be used by 31 March. Requests longer than 10 consecutive working days must be arranged with HR."/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="SICK"/>
+            <ref colIdx="1" value="Sick Leave (Cuti Sakit)"/>
+            <ref colIdx="2" value="14 paid working days per year"/>
+            <ref colIdx="3" value="0"/>
+            <ref colIdx="4" value="5"/>
+            <ref colIdx="5" value="7"/>
+            <ref colIdx="6" value="CONDITIONAL"/>
+            <ref colIdx="7" value="Doctor certificate (surat keterangan dokter) for absences longer than 2 consecutive working days"/>
+            <ref colIdx="8" value="MANAGER"/>
+            <ref colIdx="9" value="YES"/>
+            <ref colIdx="10" value="May be submitted up to 7 calendar days after the absence started. Absences longer than 5 working days, or any work-related illness or injury, are handled directly by HR."/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="SPECIAL"/>
+            <ref colIdx="1" value="Special Leave for Important Reasons (Cuti Alasan Penting)"/>
+            <ref colIdx="2" value="Up to 5 paid working days per year, per qualifying event"/>
+            <ref colIdx="3" value="0"/>
+            <ref colIdx="4" value="3"/>
+            <ref colIdx="5" value="3"/>
+            <ref colIdx="6" value="YES"/>
+            <ref colIdx="7" value="Supporting document (for example marriage certificate or death notice) sent to HR within 5 working days"/>
+            <ref colIdx="8" value="MANAGER"/>
+            <ref colIdx="9" value="YES"/>
+            <ref colIdx="10" value="Qualifying events: own marriage (3 days); marriage, circumcision or baptism of a child (2 days); spouse giving birth or miscarriage (2 days); death of spouse, parent, parent-in-law or child (2 days); death of another household member (1 day)."/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="PARENTAL"/>
+            <ref colIdx="1" value="Parental Leave (Cuti Melahirkan / Cuti Ayah)"/>
+            <ref colIdx="2" value="Birth parent: up to 65 working days; non-birth parent: up to 10 working days"/>
+            <ref colIdx="3" value="30"/>
+            <ref colIdx="4" value="65"/>
+            <ref colIdx="5" value="0"/>
+            <ref colIdx="6" value="YES"/>
+            <ref colIdx="7" value="Letter from a doctor or midwife stating the expected delivery date"/>
+            <ref colIdx="8" value="MANAGER_THEN_HR"/>
+            <ref colIdx="9" value="YES"/>
+            <ref colIdx="10" value="Approved first by the line manager and then confirmed by HR, which verifies eligibility and the entitlement that applies. HR can waive the notice period for early or unplanned births."/>
+          </Values>
+        </row>
+      </Rows>
+    </CrossRefTable>
+  </bns:object>
+</bns:Component>

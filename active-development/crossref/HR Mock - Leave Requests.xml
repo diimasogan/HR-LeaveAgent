@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="e6364ab3-944d-4aa5-a91c-9c6ff75209a8" name="HR Mock - Leave Requests"
+               type="crossref" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Historical and in-flight leave requests (lookup by request_id). Requests submitted through the demo tool are acknowledged but not written here, because the demo does not persist new data. | MOCK DATA for demo - fictitious company and people | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <CrossRefTable xmlns="" atomEnabled="false" modelVersion="3">
+      <ColumnHeaders>
+        <columnHeader>request_id</columnHeader>
+        <columnHeader>employee_id</columnHeader>
+        <columnHeader>employee_name</columnHeader>
+        <columnHeader>leave_type</columnHeader>
+        <columnHeader>start_date</columnHeader>
+        <columnHeader>end_date</columnHeader>
+        <columnHeader>working_days</columnHeader>
+        <columnHeader>status</columnHeader>
+        <columnHeader>submitted_on</columnHeader>
+        <columnHeader>approver_id</columnHeader>
+        <columnHeader>approver_name</columnHeader>
+        <columnHeader>decision_on</columnHeader>
+        <columnHeader>approver_comment</columnHeader>
+        <columnHeader>reason_summary</columnHeader>
+      </ColumnHeaders>
+      <Rows>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0094"/>
+            <ref colIdx="1" value="NDS-1020"/>
+            <ref colIdx="2" value="Maya Putri"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-06-22"/>
+            <ref colIdx="5" value="2026-07-03"/>
+            <ref colIdx="6" value="10"/>
+            <ref colIdx="7" value="APPROVED"/>
+            <ref colIdx="8" value="2026-05-25"/>
+            <ref colIdx="9" value="NDS-1000"/>
+            <ref colIdx="10" value="Budi Santoso"/>
+            <ref colIdx="11" value="2026-05-27"/>
+            <ref colIdx="12" value="Enjoy the break. Agus covers month-end close."/>
+            <ref colIdx="13" value="Family holiday"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0101"/>
+            <ref colIdx="1" value="NDS-1011"/>
+            <ref colIdx="2" value="Dewi Lestari"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-08-10"/>
+            <ref colIdx="5" value="2026-08-14"/>
+            <ref colIdx="6" value="5"/>
+            <ref colIdx="7" value="APPROVED"/>
+            <ref colIdx="8" value="2026-07-15"/>
+            <ref colIdx="9" value="NDS-1010"/>
+            <ref colIdx="10" value="Hendra Gunawan"/>
+            <ref colIdx="11" value="2026-07-20"/>
+            <ref colIdx="12" value="Approved. Please hand over the on-call rota to Kevin."/>
+            <ref colIdx="13" value="Family trip to Yogyakarta"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0112"/>
+            <ref colIdx="1" value="NDS-1010"/>
+            <ref colIdx="2" value="Hendra Gunawan"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-10-05"/>
+            <ref colIdx="5" value="2026-10-09"/>
+            <ref colIdx="6" value="5"/>
+            <ref colIdx="7" value="CANCELLED"/>
+            <ref colIdx="8" value="2026-09-01"/>
+            <ref colIdx="9" value="NDS-1000"/>
+            <ref colIdx="10" value="Budi Santoso"/>
+            <ref colIdx="11" value="2026-09-28"/>
+            <ref colIdx="12" value="Cancelled by employee."/>
+            <ref colIdx="13" value="Personal travel"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0118"/>
+            <ref colIdx="1" value="NDS-1011"/>
+            <ref colIdx="2" value="Dewi Lestari"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-12-21"/>
+            <ref colIdx="5" value="2026-12-24"/>
+            <ref colIdx="6" value="4"/>
+            <ref colIdx="7" value="PENDING_MANAGER_APPROVAL"/>
+            <ref colIdx="8" value="2026-11-05"/>
+            <ref colIdx="9" value="NDS-1010"/>
+            <ref colIdx="10" value="Hendra Gunawan"/>
+            <ref colIdx="11" value=""/>
+            <ref colIdx="12" value=""/>
+            <ref colIdx="13" value="Year-end holiday"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0122"/>
+            <ref colIdx="1" value="NDS-1013"/>
+            <ref colIdx="2" value="Kevin Tan"/>
+            <ref colIdx="3" value="SICK"/>
+            <ref colIdx="4" value="2026-11-02"/>
+            <ref colIdx="5" value="2026-11-03"/>
+            <ref colIdx="6" value="2"/>
+            <ref colIdx="7" value="APPROVED"/>
+            <ref colIdx="8" value="2026-11-03"/>
+            <ref colIdx="9" value="NDS-1010"/>
+            <ref colIdx="10" value="Hendra Gunawan"/>
+            <ref colIdx="11" value="2026-11-04"/>
+            <ref colIdx="12" value="Get well soon."/>
+            <ref colIdx="13" value="Unwell"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0125"/>
+            <ref colIdx="1" value="NDS-1031"/>
+            <ref colIdx="2" value="Fajar Nugroho"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-11-23"/>
+            <ref colIdx="5" value="2026-11-27"/>
+            <ref colIdx="6" value="5"/>
+            <ref colIdx="7" value="REJECTED"/>
+            <ref colIdx="8" value="2026-11-06"/>
+            <ref colIdx="9" value="NDS-1030"/>
+            <ref colIdx="10" value="Lina Kurniawan"/>
+            <ref colIdx="11" value="2026-11-09"/>
+            <ref colIdx="12" value="Quarter-end client renewals that week. Please propose dates after 7 December."/>
+            <ref colIdx="13" value="Holiday"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0127"/>
+            <ref colIdx="1" value="NDS-1032"/>
+            <ref colIdx="2" value="Putri Anggraini"/>
+            <ref colIdx="3" value="PARENTAL"/>
+            <ref colIdx="4" value="2027-01-04"/>
+            <ref colIdx="5" value="2027-04-02"/>
+            <ref colIdx="6" value="65"/>
+            <ref colIdx="7" value="PENDING_HR_REVIEW"/>
+            <ref colIdx="8" value="2026-11-02"/>
+            <ref colIdx="9" value="NDS-1002"/>
+            <ref colIdx="10" value="Siti Rahmawati"/>
+            <ref colIdx="11" value=""/>
+            <ref colIdx="12" value="Manager approved 2026-11-10. HR is verifying the supporting letter."/>
+            <ref colIdx="13" value="Upcoming birth of first child"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0130"/>
+            <ref colIdx="1" value="NDS-1021"/>
+            <ref colIdx="2" value="Agus Setiawan"/>
+            <ref colIdx="3" value="SPECIAL"/>
+            <ref colIdx="4" value="2026-11-16"/>
+            <ref colIdx="5" value="2026-11-18"/>
+            <ref colIdx="6" value="3"/>
+            <ref colIdx="7" value="APPROVED"/>
+            <ref colIdx="8" value="2026-11-09"/>
+            <ref colIdx="9" value="NDS-1020"/>
+            <ref colIdx="10" value="Maya Putri"/>
+            <ref colIdx="11" value="2026-11-11"/>
+            <ref colIdx="12" value="Congratulations on your wedding!"/>
+            <ref colIdx="13" value="Own marriage"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0131"/>
+            <ref colIdx="1" value="NDS-1012"/>
+            <ref colIdx="2" value="Rizky Firmansyah"/>
+            <ref colIdx="3" value="SICK"/>
+            <ref colIdx="4" value="2026-11-10"/>
+            <ref colIdx="5" value="2026-11-10"/>
+            <ref colIdx="6" value="1"/>
+            <ref colIdx="7" value="APPROVED"/>
+            <ref colIdx="8" value="2026-11-10"/>
+            <ref colIdx="9" value="NDS-1010"/>
+            <ref colIdx="10" value="Hendra Gunawan"/>
+            <ref colIdx="11" value="2026-11-11"/>
+            <ref colIdx="12" value=""/>
+            <ref colIdx="13" value="Unwell"/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="LR-2026-0133"/>
+            <ref colIdx="1" value="NDS-1002"/>
+            <ref colIdx="2" value="Siti Rahmawati"/>
+            <ref colIdx="3" value="ANNUAL"/>
+            <ref colIdx="4" value="2026-12-28"/>
+            <ref colIdx="5" value="2026-12-31"/>
+            <ref colIdx="6" value="4"/>
+            <ref colIdx="7" value="PENDING_MANAGER_APPROVAL"/>
+            <ref colIdx="8" value="2026-11-10"/>
+            <ref colIdx="9" value="NDS-1001"/>
+            <ref colIdx="10" value="Ratna Wijaya"/>
+            <ref colIdx="11" value=""/>
+            <ref colIdx="12" value=""/>
+            <ref colIdx="13" value="Year-end holiday"/>
+          </Values>
+        </row>
+      </Rows>
+    </CrossRefTable>
+  </bns:object>
+</bns:Component>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="56e522ac-2076-43e3-b4f6-daa748caaea9" name="HR WSS Get Leave Request Status" type="connector-action" subType="wss" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_leave_request_status. Endpoint: GET /ws/simple/getLeaveRequestStatus?requesterId=&amp;requestId= | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <Operation>
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="none" objectName="leaveRequestStatus" operationType="GET" outputType="singledata" responseContentType="application/json"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+
+</bns:Component>

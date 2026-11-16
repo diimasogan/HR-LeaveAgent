@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="c0747d73-7bab-4aa9-872f-114b8886cea1" name="[SUB] HR Tool - Submit Leave Request" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool submit_leave_request. POST body j.HR.SubmitLeaveRequest.REQ. Guardrails: input-format check, authorisation (self or HR admin only), Business Rules policy validation (type, active status, dates, backdating, notice, 12-month horizon, max consecutive days, balance), audit log, error catch. Demo: acknowledged, not persisted. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<passthroughaction/>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="catcherrors_icon" name="shape2" shapetype="catcherrors" userlabel="" x="240.0" y="48.0">
+  <configuration>
+<catcherrors catchAll="true" retryCount="0"/>
+  </configuration>
+  <dragpoints><dragpoint identifier="default" name="shape2.dragpoint1" text="Try" toShape="shape3" x="416" y="56"/><dragpoint identifier="error" name="shape2.dragpoint2" text="Catch" toShape="shape50" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape3" shapetype="documentproperties" userlabel="Read Request Fields" x="432.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_TOOL_NAME" persist="false" propertyId="process.DPP_TOOL_NAME" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="submit_leave_request"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_REQUESTER_ID" persist="false" propertyId="process.DPP_REQUESTER_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="3" elementName="requesterId (Root/Object/requesterId)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_EMPLOYEE_ID" persist="false" propertyId="process.DPP_EMPLOYEE_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="4" elementName="employeeId (Root/Object/employeeId)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ALLOW_MANAGER" persist="false" propertyId="process.DPP_ALLOW_MANAGER" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="false"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_LEAVE_TYPE" persist="false" propertyId="dynamicdocument.DDP_LEAVE_TYPE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="5" elementName="leaveType (Root/Object/leaveType)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_START_DATE" persist="false" propertyId="dynamicdocument.DDP_START_DATE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="6" elementName="startDate (Root/Object/startDate)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_END_DATE" persist="false" propertyId="dynamicdocument.DDP_END_DATE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="7" elementName="endDate (Root/Object/endDate)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_WORKING_DAYS" persist="false" propertyId="dynamicdocument.DDP_WORKING_DAYS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="8" elementName="workingDays (Root/Object/workingDays)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_INPUT_CHECK" persist="false" propertyId="dynamicdocument.DDP_INPUT_CHECK" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="profile"><profileelement elementId="5" elementName="leaveType (Root/Object/leaveType)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+<parametervalue key="1" usesEncryption="false" valueType="static"><staticparameter staticproperty="|"/></parametervalue>
+<parametervalue key="2" usesEncryption="false" valueType="profile"><profileelement elementId="6" elementName="startDate (Root/Object/startDate)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+<parametervalue key="3" usesEncryption="false" valueType="static"><staticparameter staticproperty="|"/></parametervalue>
+<parametervalue key="4" usesEncryption="false" valueType="profile"><profileelement elementId="7" elementName="endDate (Root/Object/endDate)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+<parametervalue key="5" usesEncryption="false" valueType="static"><staticparameter staticproperty="|"/></parametervalue>
+<parametervalue key="6" usesEncryption="false" valueType="profile"><profileelement elementId="8" elementName="workingDays (Root/Object/workingDays)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+<parametervalue key="7" usesEncryption="false" valueType="static"><staticparameter staticproperty="|"/></parametervalue>
+<parametervalue key="8" usesEncryption="false" valueType="profile"><profileelement elementId="9" elementName="reason (Root/Object/reason)" profileId="9581c087-06b2-437c-b153-f1e9aefc0b87" profileType="profile.json"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape3.dragpoint1" toShape="shape4" x="608" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape4" shapetype="decision" userlabel="Input format valid?" x="624.0" y="48.0">
+  <configuration>
+<decision comparison="regex" name="Input format valid?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_INPUT_CHECK" propertyName="Dynamic Document Property - DDP_INPUT_CHECK"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="^(ANNUAL|SICK|SPECIAL|PARENTAL)\|20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\|20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\|[0-9]{1,2}(\.0|\.5)?\|\s*\S[\s\S]*$"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape4.dragpoint1" text="True" toShape="shape5" x="800" y="56"/><dragpoint identifier="false" name="shape4.dragpoint2" text="False" toShape="shape52" x="800" y="56"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape5" shapetype="processcall" userlabel="Authorize Requester" x="816.0" y="48.0">
+  <configuration>
+<processcall abort="true" processId="dba3fb26-76b4-4f08-989d-ed77120e665f" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape40"/><returnpaths childShapeName="shape42"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape40" name="shape5.dragpoint1" text="Authorized" toShape="shape6" x="992" y="56"/><dragpoint identifier="shape42" name="shape5.dragpoint2" text="Denied" toShape="shape53" x="992" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape6" shapetype="documentproperties" userlabel="Look Up Status, Policy and Balance" x="1008.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_EMPLOYEE_STATUS" persist="false" propertyId="dynamicdocument.DDP_EMPLOYEE_STATUS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="12" outputParamName="employment_status"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_POLICY_NAME" persist="false" propertyId="dynamicdocument.DDP_POLICY_NAME" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_MAX_CONSECUTIVE" persist="false" propertyId="dynamicdocument.DDP_MAX_CONSECUTIVE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="5" outputParamName="max_consecutive_working_days"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_AVAILABLE_DAYS" persist="false" propertyId="dynamicdocument.DDP_AVAILABLE_DAYS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="d9a8af3f-e106-4965-9462-e667df3d4337" outputParamId="8" outputParamName="available_days"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue><parametervalue elementToSetId="2" elementToSetName="leave_type" key="1" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape6.dragpoint1" toShape="shape7" x="1184" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape7" shapetype="message" userlabel="Build Validation Context" x="1200.0" y="48.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"requesterId": "'{1}'", "employeeId": "'{2}'", "leaveType": "'{3}'", "startDate": "'{4}'", "endDate": "'{5}'", "workingDays": "'{6}'", "reason": "'{7}'", "employeeStatus": "'{8}'", "policyName": "'{9}'", "maxConsecutiveDays": "'{10}'", "availableDays": "'{11}'", "today": "'{12}'", "todayMinus3": "'{13}'", "todayMinus7": "'{14}'", "todayPlus7": "'{15}'", "todayPlus30": "'{16}'", "todayPlus365": "'{17}'"}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue>
+<parametervalue key="3" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_START_DATE" propertyName="Dynamic Document Property - DDP_START_DATE"/></parametervalue>
+<parametervalue key="4" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_END_DATE" propertyName="Dynamic Document Property - DDP_END_DATE"/></parametervalue>
+<parametervalue key="5" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_WORKING_DAYS" propertyName="Dynamic Document Property - DDP_WORKING_DAYS"/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="provided"/></parametervalue>
+<parametervalue key="7" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_EMPLOYEE_STATUS" propertyName="Dynamic Document Property - DDP_EMPLOYEE_STATUS"/></parametervalue>
+<parametervalue key="8" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_POLICY_NAME" propertyName="Dynamic Document Property - DDP_POLICY_NAME"/></parametervalue>
+<parametervalue key="9" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_MAX_CONSECUTIVE" propertyName="Dynamic Document Property - DDP_MAX_CONSECUTIVE"/></parametervalue>
+<parametervalue key="10" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_AVAILABLE_DAYS" propertyName="Dynamic Document Property - DDP_AVAILABLE_DAYS"/></parametervalue>
+<parametervalue key="11" valueType="date"><dateparameter dateparametertype="current" datetimemask="yyyy-MM-dd"/></parametervalue>
+<parametervalue key="12" valueType="date"><dateparameter dateparametertype="relative" datetimemask="yyyy-MM-dd"><datedelta sign="minus" unit="days" value="3"/></dateparameter></parametervalue>
+<parametervalue key="13" valueType="date"><dateparameter dateparametertype="relative" datetimemask="yyyy-MM-dd"><datedelta sign="minus" unit="days" value="7"/></dateparameter></parametervalue>
+<parametervalue key="14" valueType="date"><dateparameter dateparametertype="relative" datetimemask="yyyy-MM-dd"><datedelta sign="plus" unit="days" value="7"/></dateparameter></parametervalue>
+<parametervalue key="15" valueType="date"><dateparameter dateparametertype="relative" datetimemask="yyyy-MM-dd"><datedelta sign="plus" unit="days" value="30"/></dateparameter></parametervalue>
+<parametervalue key="16" valueType="date"><dateparameter dateparametertype="relative" datetimemask="yyyy-MM-dd"><datedelta sign="plus" unit="days" value="365"/></dateparameter></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape7.dragpoint1" toShape="shape8" x="1376" y="56"/></dragpoints>
+</shape>
+<shape image="businessrules_icon" name="shape8" shapetype="businessrules" userlabel="Validate Against Leave Policy" x="1392.0" y="48.0">
+  <configuration>
+<businessrules profileId="9ae33a8b-57eb-44e9-a7e7-789b9f012d75" profileName="j.HR.LeaveValidation.CTX" profileType="profile.json"><rule key="1" name="Leave type is recognised"><input alias="policyName" elementKey="11" id="1" name="policyName (Root/Object/policyName)" taglist="0" xsi:type="BusinessRuleField"/><input alias="leaveType" elementKey="5" id="2" name="leaveType (Root/Object/leaveType)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="is not empty" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="policyName" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="Leave type {1} is not a recognised leave type. Use ANNUAL, SICK, SPECIAL or PARENTAL."><input index="1"><input deleted="false" id="2" name="leaveType" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="2" name="Employee record is active"><input alias="employeeStatus" elementKey="10" id="1" name="employeeStatus (Root/Object/employeeStatus)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="employeeStatus" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"ACTIVE"' value="ACTIVE" xsi:type="StaticConditionInput"/></nestedExpression></condition><errorMessage content="The employee record is not active (status: {1}). Leave cannot be requested through self-service; contact HR."><input index="1"><input deleted="false" id="1" name="employeeStatus" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="3" name="Working days is greater than zero"><input alias="workingDays" elementKey="8" id="1" name="workingDays (Root/Object/workingDays)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="&gt;" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"0"' value="0" xsi:type="StaticConditionInput"/></nestedExpression></condition><errorMessage content="workingDays must be greater than zero (received {1})."><input index="1"><input deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="4" name="End date is on or after start date"><input alias="endDate" elementKey="7" id="1" name="endDate (Root/Object/endDate)" taglist="0" xsi:type="BusinessRuleField"/><input alias="startDate" elementKey="6" id="2" name="startDate (Root/Object/startDate)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="endDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="End date {1} is before start date {2}."><input index="1"><input deleted="false" id="1" name="endDate" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="5" name="Start date is within the backdating window"><input alias="leaveType" elementKey="5" id="1" name="leaveType (Root/Object/leaveType)" taglist="0" xsi:type="BusinessRuleField"/><input alias="startDate" elementKey="6" id="2" name="startDate (Root/Object/startDate)" taglist="0" xsi:type="BusinessRuleField"/><input alias="today" elementKey="14" id="3" name="today (Root/Object/today)" taglist="0" xsi:type="BusinessRuleField"/><input alias="todayMinus3" elementKey="15" id="4" name="todayMinus3 (Root/Object/todayMinus3)" taglist="0" xsi:type="BusinessRuleField"/><input alias="todayMinus7" elementKey="16" id="5" name="todayMinus7 (Root/Object/todayMinus7)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="or" xsi:type="GroupingCondition"><nestedExpression operator="and" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"SICK"' value="SICK" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="5" name="todayMinus7" xsi:type="FieldConditionInput"/></nestedExpression></nestedExpression><nestedExpression operator="and" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"SPECIAL"' value="SPECIAL" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="4" name="todayMinus3" xsi:type="FieldConditionInput"/></nestedExpression></nestedExpression><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="3" name="today" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="Start date {1} is in the past. Only SICK leave (up to 7 days back, earliest {2}) and SPECIAL leave (up to 3 days back, earliest {3}) can be backdated. Contact HR for other corrections."><input index="1"><input deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="5" name="todayMinus7" xsi:type="FieldConditionInput"/></input><input index="3"><input deleted="false" id="4" name="todayMinus3" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="6" name="Minimum notice period is met"><input alias="leaveType" elementKey="5" id="1" name="leaveType (Root/Object/leaveType)" taglist="0" xsi:type="BusinessRuleField"/><input alias="startDate" elementKey="6" id="2" name="startDate (Root/Object/startDate)" taglist="0" xsi:type="BusinessRuleField"/><input alias="todayPlus7" elementKey="17" id="3" name="todayPlus7 (Root/Object/todayPlus7)" taglist="0" xsi:type="BusinessRuleField"/><input alias="todayPlus30" elementKey="18" id="4" name="todayPlus30 (Root/Object/todayPlus30)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="or" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"SICK"' value="SICK" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"SPECIAL"' value="SPECIAL" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="and" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"ANNUAL"' value="ANNUAL" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="3" name="todayPlus7" xsi:type="FieldConditionInput"/></nestedExpression></nestedExpression><nestedExpression operator="and" xsi:type="GroupingCondition"><nestedExpression operator="=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="0" name='"PARENTAL"' value="PARENTAL" xsi:type="StaticConditionInput"/></nestedExpression><nestedExpression operator="&gt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="4" name="todayPlus30" xsi:type="FieldConditionInput"/></nestedExpression></nestedExpression></condition><errorMessage content="Start date {1} does not meet the minimum notice period for {2} leave. ANNUAL leave needs 7 days notice (earliest {3}); PARENTAL leave needs 30 days notice (earliest {4}). HR can approve exceptions."><input index="1"><input deleted="false" id="2" name="startDate" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="1" name="leaveType" xsi:type="FieldConditionInput"/></input><input index="3"><input deleted="false" id="3" name="todayPlus7" xsi:type="FieldConditionInput"/></input><input index="4"><input deleted="false" id="4" name="todayPlus30" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="7" name="Start date is no more than 12 months ahead"><input alias="startDate" elementKey="6" id="1" name="startDate (Root/Object/startDate)" taglist="0" xsi:type="BusinessRuleField"/><input alias="todayPlus365" elementKey="19" id="2" name="todayPlus365 (Root/Object/todayPlus365)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="&lt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="startDate" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="2" name="todayPlus365" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="Start date {1} is more than 12 months ahead. The latest allowed start date is {2}."><input index="1"><input deleted="false" id="1" name="startDate" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="2" name="todayPlus365" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="8" name="Request is within the maximum consecutive working days"><input alias="workingDays" elementKey="8" id="1" name="workingDays (Root/Object/workingDays)" taglist="0" xsi:type="BusinessRuleField"/><input alias="maxConsecutiveDays" elementKey="12" id="2" name="maxConsecutiveDays (Root/Object/maxConsecutiveDays)" taglist="0" xsi:type="BusinessRuleField"/><input alias="leaveType" elementKey="5" id="3" name="leaveType (Root/Object/leaveType)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="&lt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="2" name="maxConsecutiveDays" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="{1} working days is more than the maximum of {2} consecutive working days for {3} leave through self-service. Longer absences must be arranged with HR."><input index="1"><input deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="2" name="maxConsecutiveDays" xsi:type="FieldConditionInput"/></input><input index="3"><input deleted="false" id="3" name="leaveType" xsi:type="FieldConditionInput"/></input></errorMessage></rule><rule key="9" name="Leave balance is sufficient"><input alias="workingDays" elementKey="8" id="1" name="workingDays (Root/Object/workingDays)" taglist="0" xsi:type="BusinessRuleField"/><input alias="availableDays" elementKey="13" id="2" name="availableDays (Root/Object/availableDays)" taglist="0" xsi:type="BusinessRuleField"/><input alias="leaveType" elementKey="5" id="3" name="leaveType (Root/Object/leaveType)" taglist="0" xsi:type="BusinessRuleField"/><condition operator="and" xsi:type="GroupingCondition"><nestedExpression operator="&lt;=" xsi:type="SimpleCondition"><leftInput deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/><rightInput deleted="false" id="2" name="availableDays" xsi:type="FieldConditionInput"/></nestedExpression></condition><errorMessage content="Insufficient {3} balance: {1} working days requested but only {2} available."><input index="1"><input deleted="false" id="1" name="workingDays" xsi:type="FieldConditionInput"/></input><input index="2"><input deleted="false" id="2" name="availableDays" xsi:type="FieldConditionInput"/></input><input index="3"><input deleted="false" id="3" name="leaveType" xsi:type="FieldConditionInput"/></input></errorMessage></rule></businessrules>
+  </configuration>
+  <dragpoints><dragpoint identifier="Accepted" name="shape8.dragpoint1" text="Accepted" toShape="shape9" x="1568" y="56"/><dragpoint identifier="Rejected" name="shape8.dragpoint2" text="Rejected" toShape="shape12" x="1568" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape9" shapetype="documentproperties" userlabel="Generate Request ID" x="1584.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_REQUEST_ID" persist="false" propertyId="dynamicdocument.DDP_REQUEST_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="LR-"/></parametervalue>
+<parametervalue key="1" usesEncryption="false" valueType="date"><dateparameter dateparametertype="current" datetimemask="yyyy"/></parametervalue>
+<parametervalue key="2" usesEncryption="false" valueType="static"><staticparameter staticproperty="-9"/></parametervalue>
+<parametervalue key="3" usesEncryption="false" valueType="keygen"><keygenparameter keyfixtolength="3" keyname="HR_DEMO_LEAVE_REQUEST"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape9.dragpoint1" toShape="shape10" x="1760" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape10" shapetype="message" userlabel="Build Submission Accepted Response" x="1776.0" y="48.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": true, "status": "PENDING_MANAGER_APPROVAL", "requestId": "'{1}'", "employeeId": "'{2}'", "employeeName": "'{3}'", "leaveType": "'{4}'", "leaveTypeName": "'{5}'", "startDate": "'{6}'", "endDate": "'{7}'", "workingDays": '{8}', "approverId": "'{9}'", "approverName": "'{10}'", "approvalRoute": "'{11}'", "documentationRequired": "'{12}'", "documentationDetail": "'{13}'", "submittedAt": "'{14}'", "nextSteps": "The line manager has been asked to approve. The employee will be notified of the decision. Leave is not confirmed until it is approved.", "demoNote": "Demo environment: the request was validated and acknowledged but is not stored."}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_REQUEST_ID" propertyName="Dynamic Document Property - DDP_REQUEST_ID"/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="2" outputParamName="full_name"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="3" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue>
+<parametervalue key="4" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="2" outputParamName="display_name"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="5" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_START_DATE" propertyName="Dynamic Document Property - DDP_START_DATE"/></parametervalue>
+<parametervalue key="6" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_END_DATE" propertyName="Dynamic Document Property - DDP_END_DATE"/></parametervalue>
+<parametervalue key="7" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_WORKING_DAYS" propertyName="Dynamic Document Property - DDP_WORKING_DAYS"/></parametervalue>
+<parametervalue key="8" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="8" outputParamName="manager_id"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="9" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="9" outputParamName="manager_name"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="10" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="9" outputParamName="approval_route"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="11" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="7" outputParamName="documentation_required"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="12" valueType="crossref"><crossrefparameter crossRefTableId="b70461c6-c23b-439c-9c95-5bb5bf0d4acd" outputParamId="8" outputParamName="documentation_detail"><inputs><parametervalue elementToSetId="1" elementToSetName="leave_type" key="0" usesEncryption="false" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_LEAVE_TYPE" propertyName="Dynamic Document Property - DDP_LEAVE_TYPE"/></parametervalue></inputs></crossrefparameter></parametervalue>
+<parametervalue key="13" valueType="date"><dateparameter dateparametertype="current" datetimemask="yyyy-MM-dd'T'HH:mm:ssXXX"/></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape10.dragpoint1" toShape="shape11" x="1952" y="56"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape11" shapetype="notify" userlabel="Audit: Submitted" x="1968.0" y="48.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="SUBMITTED"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape11.dragpoint1" toShape="shape99" x="2144" y="56"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape12" shapetype="message" userlabel="Extract Rule Failures" x="1584.0" y="208.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>{1}</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="track"><trackparameter defaultValue="" propertyId="meta.base.businessrulesmessage" propertyName="Base - Business Rules Result Message"/></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape12.dragpoint1" toShape="shape13" x="1760" y="216"/></dragpoints>
+</shape>
+<shape image="dataprocess_icon" name="shape13" shapetype="dataprocess" userlabel="Flatten Failures to Text" x="1776.0" y="208.0">
+  <configuration>
+<dataprocess><step index="1" key="1" name="Search/Replace" processtype="1"><dataprocessreplace replacewith="" searchType="document" texttofind='&lt;business_rule_failure rule="[^"]*"&gt;'/></step><step index="2" key="2" name="Search/Replace" processtype="1"><dataprocessreplace replacewith=" | " searchType="document" texttofind="&lt;/business_rule_failure&gt;"/></step><step index="3" key="3" name="Search/Replace" processtype="1"><dataprocessreplace replacewith="" searchType="document" texttofind="&lt;/?business_rule_failures[^&gt;]*&gt;"/></step><step index="4" key="4" name="Search/Replace" processtype="1"><dataprocessreplace replacewith=" " searchType="document" texttofind="[\r\n\t]+"/></step><step index="5" key="5" name="Search/Replace" processtype="1"><dataprocessreplace replacewith=" | " searchType="document" texttofind="\s*\|\s*"/></step><step index="6" key="6" name="Search/Replace" processtype="1"><dataprocessreplace replacewith="'" searchType="document" texttofind='"'/></step><step index="7" key="7" name="Search/Replace" processtype="1"><dataprocessreplace replacewith="" searchType="document" texttofind="^[\s|]+|[\s|]+$"/></step></dataprocess>
+  </configuration>
+  <dragpoints><dragpoint name="shape13.dragpoint1" toShape="shape14" x="1952" y="216"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape14" shapetype="documentproperties" userlabel="Store Violations" x="1968.0" y="208.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_VIOLATIONS" persist="false" propertyId="dynamicdocument.DDP_VIOLATIONS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="current"/>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape14.dragpoint1" toShape="shape15" x="2144" y="216"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape15" shapetype="message" userlabel="Build Validation Failed Response" x="2160.0" y="208.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "submit_leave_request", "errorCode": "POLICY_VALIDATION_FAILED", "message": "The leave request was NOT submitted because it breaks one or more leave policy rules. Explain the violations to the employee and help them adjust the request.", "violations": "'{1}'"}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_VIOLATIONS" propertyName="Dynamic Document Property - DDP_VIOLATIONS"/></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape15.dragpoint1" toShape="shape16" x="2336" y="216"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape16" shapetype="notify" userlabel="Audit: Rejected by Policy" x="2352.0" y="208.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="POLICY_VALIDATION_FAILED"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape16.dragpoint1" toShape="shape99" x="2528" y="216"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape50" shapetype="notify" userlabel="Log Error" x="432.0" y="528.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>ERROR | tool=submit_leave_request | {1}</notifyMessage>
+  <notifyMessageLevel>ERROR</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="track"><trackparameter defaultValue="" propertyId="meta.base.catcherrorsmessage" propertyName="Base - Try/Catch Message"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape50.dragpoint1" toShape="shape51" x="608" y="536"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape51" shapetype="message" userlabel="Build Processing Error Response" x="624.0" y="528.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "submit_leave_request", "errorCode": "REQUEST_PROCESSING_ERROR", "message": "The request could not be processed. Check that the body is valid JSON matching the tool schema and avoid double quotes in free text. Nothing was submitted."}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape51.dragpoint1" toShape="shape99" x="800" y="536"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape52" shapetype="message" userlabel="Build Invalid Input Response" x="816.0" y="368.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "submit_leave_request", "errorCode": "INVALID_INPUT", "message": "Nothing was submitted. Required: leaveType (ANNUAL, SICK, SPECIAL or PARENTAL), startDate and endDate as YYYY-MM-DD, workingDays as a number in half-day steps (for example 3 or 2.5), and a non-empty reason."}'</msgTxt>
+  <msgParameters>
+
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape52.dragpoint1" toShape="shape99" x="992" y="376"/></dragpoints>
+</shape>
+<shape image="notify_icon" name="shape53" shapetype="notify" userlabel="Audit: Denied" x="1008.0" y="368.0">
+  <configuration>
+<notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+  <notifyMessage>AUDIT | tool={1} | requester={2} | employee={3} | result={4} | accessBasis={5} | denyCode={6} | outcome={7}</notifyMessage>
+  <notifyMessageLevel>INFO</notifyMessageLevel>
+  <notifyParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="3" valueType="process"><processparameter processproperty="DPP_AUTH_RESULT" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="4" valueType="process"><processparameter processproperty="DPP_ACCESS_BASIS" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="5" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="6" valueType="static"><staticparameter staticproperty="ACCESS_DENIED"/></parametervalue>
+  </notifyParameters>
+</notify>
+  </configuration>
+  <dragpoints><dragpoint name="shape53.dragpoint1" toShape="shape99" x="1184" y="376"/></dragpoints>
+</shape>
+<shape image="returndocuments_icon" name="shape99" shapetype="returndocuments" userlabel="Tool Response" x="2544.0" y="48.0">
+  <configuration>
+<returndocuments label="Tool Response"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

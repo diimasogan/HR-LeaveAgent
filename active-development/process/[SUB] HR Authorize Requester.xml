@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="dba3fb26-76b4-4f08-989d-ed77120e665f" name="[SUB] HR Authorize Requester" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Shared server-side authorisation guardrail for every HR agent tool. Inputs (DPPs): DPP_REQUESTER_ID, DPP_EMPLOYEE_ID, DPP_ALLOW_MANAGER, DPP_TOOL_NAME. Allows SELF, HR_ADMIN, or the direct MANAGER (when DPP_ALLOW_MANAGER=true). Authorized returns the inbound document unchanged; Denied returns a JSON error. Sets DPP_AUTH_RESULT / DPP_ACCESS_BASIS / DPP_DENY_CODE for audit. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<passthroughaction/>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape2" shapetype="documentproperties" userlabel="Build ID Check Value" x="240.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_ID_CHECK" persist="false" propertyId="dynamicdocument.DDP_ID_CHECK" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" usesEncryption="false" valueType="static"><staticparameter staticproperty="|"/></parametervalue>
+<parametervalue key="2" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape2.dragpoint1" toShape="shape3" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape3" shapetype="decision" userlabel="Identifiers well-formed?" x="432.0" y="48.0">
+  <configuration>
+<decision comparison="regex" name="Identifiers well-formed?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_ID_CHECK" propertyName="Dynamic Document Property - DDP_ID_CHECK"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="^NDS-[0-9]{4}\|NDS-[0-9]{4}$"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape3.dragpoint1" text="True" toShape="shape4" x="608" y="56"/><dragpoint identifier="false" name="shape3.dragpoint2" text="False" toShape="shape30" x="608" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape4" shapetype="documentproperties" userlabel="Look Up Requester and Employee" x="624.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_REQUESTER_STATUS" persist="false" propertyId="dynamicdocument.DDP_REQUESTER_STATUS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="12" outputParamName="employment_status"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_REQUESTER_ROLE" persist="false" propertyId="dynamicdocument.DDP_REQUESTER_ROLE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="13" outputParamName="access_role"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_TARGET_EXISTS" persist="false" propertyId="dynamicdocument.DDP_TARGET_EXISTS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="1" outputParamName="employee_id"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - DDP_TARGET_MANAGER_ID" persist="false" propertyId="dynamicdocument.DDP_TARGET_MANAGER_ID" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="crossref"><crossrefparameter crossRefTableId="ba7a7422-6c07-4ea0-b20f-f4752c3beeb7" outputParamId="8" outputParamName="manager_id"><inputs><parametervalue elementToSetId="1" elementToSetName="employee_id" key="0" usesEncryption="false" valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></parametervalue></inputs></crossrefparameter></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape4.dragpoint1" toShape="shape5" x="800" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape5" shapetype="decision" userlabel="Requester is an active employee?" x="816.0" y="48.0">
+  <configuration>
+<decision comparison="equals" name="Requester is an active employee?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_REQUESTER_STATUS" propertyName="Dynamic Document Property - DDP_REQUESTER_STATUS"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="ACTIVE"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape5.dragpoint1" text="True" toShape="shape6" x="992" y="56"/><dragpoint identifier="false" name="shape5.dragpoint2" text="False" toShape="shape31" x="992" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape6" shapetype="decision" userlabel="Self-service request?" x="1008.0" y="48.0">
+  <configuration>
+<decision comparison="equals" name="Self-service request?">
+  <decisionvalue valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></decisionvalue>
+  <decisionvalue valueType="process"><processparameter processproperty="DPP_EMPLOYEE_ID" processpropertydefaultvalue=""/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape6.dragpoint1" text="True" toShape="shape20" x="1184" y="56"/><dragpoint identifier="false" name="shape6.dragpoint2" text="False" toShape="shape7" x="1184" y="56"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape7" shapetype="decision" userlabel="Requester is HR admin?" x="1008.0" y="208.0">
+  <configuration>
+<decision comparison="equals" name="Requester is HR admin?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_REQUESTER_ROLE" propertyName="Dynamic Document Property - DDP_REQUESTER_ROLE"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="HR_ADMIN"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape7.dragpoint1" text="True" toShape="shape8" x="1184" y="216"/><dragpoint identifier="false" name="shape7.dragpoint2" text="False" toShape="shape9" x="1184" y="216"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape8" shapetype="decision" userlabel="Employee record missing?" x="1200.0" y="208.0">
+  <configuration>
+<decision comparison="equals" name="Employee record missing?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_TARGET_EXISTS" propertyName="Dynamic Document Property - DDP_TARGET_EXISTS"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty=""/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape8.dragpoint1" text="True" toShape="shape32" x="1376" y="216"/><dragpoint identifier="false" name="shape8.dragpoint2" text="False" toShape="shape21" x="1376" y="216"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape9" shapetype="decision" userlabel="Manager access allowed for this tool?" x="1008.0" y="368.0">
+  <configuration>
+<decision comparison="equals" name="Manager access allowed for this tool?">
+  <decisionvalue valueType="process"><processparameter processproperty="DPP_ALLOW_MANAGER" processpropertydefaultvalue="false"/></decisionvalue>
+  <decisionvalue valueType="static"><staticparameter staticproperty="true"/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape9.dragpoint1" text="True" toShape="shape10" x="1184" y="376"/><dragpoint identifier="false" name="shape9.dragpoint2" text="False" toShape="shape33" x="1184" y="376"/></dragpoints>
+</shape>
+<shape image="decision_icon" name="shape10" shapetype="decision" userlabel="Requester is the direct manager?" x="1200.0" y="368.0">
+  <configuration>
+<decision comparison="equals" name="Requester is the direct manager?">
+  <decisionvalue valueType="track"><trackparameter defaultValue="" propertyId="dynamicdocument.DDP_TARGET_MANAGER_ID" propertyName="Dynamic Document Property - DDP_TARGET_MANAGER_ID"/></decisionvalue>
+  <decisionvalue valueType="process"><processparameter processproperty="DPP_REQUESTER_ID" processpropertydefaultvalue=""/></decisionvalue>
+</decision>
+  </configuration>
+  <dragpoints><dragpoint identifier="true" name="shape10.dragpoint1" text="True" toShape="shape22" x="1376" y="376"/><dragpoint identifier="false" name="shape10.dragpoint2" text="False" toShape="shape34" x="1376" y="376"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape20" shapetype="documentproperties" userlabel="Access Basis = SELF" x="1200.0" y="48.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="AUTHORIZED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="SELF"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape20.dragpoint1" toShape="shape40" x="1376" y="56"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape21" shapetype="documentproperties" userlabel="Access Basis = HR_ADMIN" x="1392.0" y="208.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="AUTHORIZED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="HR_ADMIN"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape21.dragpoint1" toShape="shape40" x="1568" y="216"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape22" shapetype="documentproperties" userlabel="Access Basis = MANAGER" x="1392.0" y="368.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="AUTHORIZED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="MANAGER"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty=""/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape22.dragpoint1" toShape="shape40" x="1568" y="376"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape30" shapetype="documentproperties" userlabel="Deny: INVALID_IDENTIFIER" x="432.0" y="528.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="DENIED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NONE"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="INVALID_IDENTIFIER"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_MESSAGE" persist="false" propertyId="process.DPP_DENY_MESSAGE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="requesterId and employeeId must both be employee IDs in the format NDS-0000."/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape30.dragpoint1" toShape="shape41" x="608" y="536"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape31" shapetype="documentproperties" userlabel="Deny: REQUESTER_NOT_RECOGNISED" x="816.0" y="528.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="DENIED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NONE"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="REQUESTER_NOT_RECOGNISED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_MESSAGE" persist="false" propertyId="process.DPP_DENY_MESSAGE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="The requesting user is not an active employee, so HR data cannot be shared."/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape31.dragpoint1" toShape="shape41" x="992" y="536"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape32" shapetype="documentproperties" userlabel="Deny: EMPLOYEE_NOT_FOUND" x="1200.0" y="528.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="DENIED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NONE"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="EMPLOYEE_NOT_FOUND"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_MESSAGE" persist="false" propertyId="process.DPP_DENY_MESSAGE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="No employee record exists for the requested employeeId."/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape32.dragpoint1" toShape="shape41" x="1376" y="536"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape33" shapetype="documentproperties" userlabel="Deny: NOT_AUTHORISED" x="1392.0" y="688.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="DENIED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NONE"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NOT_AUTHORISED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_MESSAGE" persist="false" propertyId="process.DPP_DENY_MESSAGE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="This action can only be performed by the employee themself or by HR. Managers cannot act on behalf of their reports."/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape33.dragpoint1" toShape="shape41" x="1568" y="696"/></dragpoints>
+</shape>
+<shape image="documentproperties_icon" name="shape34" shapetype="documentproperties" userlabel="Deny: NOT_AUTHORISED" x="1392.0" y="528.0">
+  <configuration>
+<documentproperties>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_AUTH_RESULT" persist="false" propertyId="process.DPP_AUTH_RESULT" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="DENIED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_ACCESS_BASIS" persist="false" propertyId="process.DPP_ACCESS_BASIS" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NONE"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_CODE" persist="false" propertyId="process.DPP_DENY_CODE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="NOT_AUTHORISED"/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+<documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_DENY_MESSAGE" persist="false" propertyId="process.DPP_DENY_MESSAGE" shouldEncrypt="false">
+  <sourcevalues>
+<parametervalue key="0" usesEncryption="false" valueType="static"><staticparameter staticproperty="You can only access your own leave information, or that of your direct reports if you are their line manager."/></parametervalue>
+  </sourcevalues>
+</documentproperty>
+</documentproperties>
+  </configuration>
+  <dragpoints><dragpoint name="shape34.dragpoint1" toShape="shape41" x="1568" y="536"/></dragpoints>
+</shape>
+<shape image="message_icon" name="shape41" shapetype="message" userlabel="Build Access Denied Response" x="1584.0" y="528.0">
+  <configuration>
+<message combined="false">
+  <msgTxt>'{"success": false, "tool": "'{1}'", "errorCode": "'{2}'", "message": "'{3}'"}'</msgTxt>
+  <msgParameters>
+<parametervalue key="0" valueType="process"><processparameter processproperty="DPP_TOOL_NAME" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="1" valueType="process"><processparameter processproperty="DPP_DENY_CODE" processpropertydefaultvalue=""/></parametervalue>
+<parametervalue key="2" valueType="process"><processparameter processproperty="DPP_DENY_MESSAGE" processpropertydefaultvalue=""/></parametervalue>
+  </msgParameters>
+</message>
+  </configuration>
+  <dragpoints><dragpoint name="shape41.dragpoint1" toShape="shape42" x="1760" y="536"/></dragpoints>
+</shape>
+<shape image="returndocuments_icon" name="shape40" shapetype="returndocuments" userlabel="Authorized" x="1584.0" y="48.0">
+  <configuration>
+<returndocuments label="Authorized"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+<shape image="returndocuments_icon" name="shape42" shapetype="returndocuments" userlabel="Denied" x="1776.0" y="528.0">
+  <configuration>
+<returndocuments label="Denied"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

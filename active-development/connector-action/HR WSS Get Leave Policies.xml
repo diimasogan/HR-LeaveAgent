@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="8362e4a2-8ce8-47a0-8e2a-0982b942671d" name="HR WSS Get Leave Policies" type="connector-action" subType="wss" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>Agent tool get_leave_policies. Endpoint: GET /ws/simple/getLeavePolicies?requesterId= | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <Operation>
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="none" objectName="leavePolicies" operationType="GET" outputType="singledata" responseContentType="application/json"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+
+</bns:Component>

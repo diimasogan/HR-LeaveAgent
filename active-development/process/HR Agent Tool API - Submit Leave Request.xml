@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bns:Component xmlns:bns="http://api.platform.boomi.com/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               componentId="e5344176-929e-46e4-b0e2-e8054a63e657" name="HR Agent Tool API - Submit Leave Request" type="process" folderId="Rjo4OTYyMjYy">
+  <bns:encryptedValues/>
+  <bns:description>WSS listener exposing agent tool submit_leave_request. Endpoint: POST /ws/simple/createLeaveRequest (JSON body). Business logic and guardrails live in [SUB] HR Tool - Submit Leave Request. | built with boomi-companion v1.0.103</bns:description>
+  <bns:object>
+    <process allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="true" updateRunDates="false" workload="general">
+      <shapes>
+<shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="48.0">
+  <configuration>
+<connectoraction actionType="Listen" allowDynamicCredentials="NONE" connectorType="wss" hideSettings="true" operationId="8a7f3708-58b9-431f-aa73-52cc2eb7adeb"><parameters/><dynamicProperties/></connectoraction>
+  </configuration>
+  <dragpoints><dragpoint name="shape1.dragpoint1" toShape="shape2" x="224" y="56"/></dragpoints>
+</shape>
+<shape image="processcall_icon" name="shape2" shapetype="processcall" userlabel="Tool Logic: submit_leave_request" x="240.0" y="48.0">
+  <configuration>
+<processcall abort="true" processId="c0747d73-7bab-4aa9-872f-114b8886cea1" wait="true"><parameters/><returnpaths><returnpaths childShapeName="shape99"/></returnpaths></processcall>
+  </configuration>
+  <dragpoints><dragpoint identifier="shape99" name="shape2.dragpoint1" text="Tool Response" toShape="shape3" x="416" y="56"/></dragpoints>
+</shape>
+<shape image="returndocuments_icon" name="shape3" shapetype="returndocuments" userlabel="HTTP Response" x="432.0" y="48.0">
+  <configuration>
+<returndocuments label="HTTP Response"/>
+  </configuration>
+  <dragpoints/>
+</shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>
